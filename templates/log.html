@@ -1,12 +1,19 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+    <div class="container">
+        <h2>Live Logs</h2>
+        <!-- Move the Kill Process button below the h2 and float it to the right -->
+        <button onclick="killProcess()" style="float: right; margin-bottom: 10px;">Kill Process</button>
+        
+        <!-- Clear the float -->
+        <div style="clear: both;"></div>
 
-    <h2>Live Logs</h2>
-    <button onclick="killProcess()">Kill Process</button>
-    <pre id="log"></pre>
-    
-
+        <!-- Container for the log with a scrollbar -->
+        <div id="logContainer" style="max-height: 750px; overflow-y: auto; border: 1px solid gray;">
+            <pre id="log"></pre>
+        </div>
+    </div>
     <script>
         function killProcess() {
             fetch('/kill')
@@ -24,7 +31,13 @@
             var source = new EventSource('/logstream');
 
             source.onmessage = function(event) {
-                document.getElementById("log").textContent += event.data + "\n";
+                var logElement = document.getElementById("log");
+                var container = document.getElementById("logContainer");
+                
+                logElement.textContent += event.data + "\n";
+
+                // Scroll to the bottom
+                container.scrollTop = container.scrollHeight;
             };
 
             source.onerror = function(event) {
@@ -35,8 +48,4 @@
             console.log("Your browser doesn't support SSE");
         }
     </script>
-</body>
-</html>
-
-    
 {% endblock %}
