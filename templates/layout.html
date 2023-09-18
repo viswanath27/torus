@@ -1,0 +1,57 @@
+<!-- templates/layout.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Torus App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <style>
+        body {
+        font-family: Arial, sans-serif;
+    }
+
+    nav {
+        background-color: navy;
+        padding: 10px 0;
+    }
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        text-align: right;  /* This will make the list items align to the right */
+    }
+
+    nav li {
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    nav a {
+        text-decoration: none;
+        padding: 5px 15px;
+        color: white; /* Text color */
+        transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+        background-color: #ffffff33; /* Slight white overlay on hover */
+    }
+</style>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
