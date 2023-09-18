@@ -1,0 +1,1 @@
+Create a Flask application which can take the name of the stock (Ex: Apple) use Yfinance library in python to read the stock data for the given organization from start date as Sept 2023 to end date as Aug 2022. Render all the 3 charts (Candlestick chart, bar chart, line chart) in the webpage. 

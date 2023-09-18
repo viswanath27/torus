@@ -1,0 +1,1 @@
+Create a Flask application showing the Apple stock data with its patterns explained with the help of Candlestick chart, bar chart, line chart and figure chart. Use Yfinance library in python to read the stock data for APPLE organization

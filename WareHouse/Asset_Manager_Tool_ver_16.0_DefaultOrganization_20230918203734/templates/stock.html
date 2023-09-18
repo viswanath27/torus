@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Data</title>
+</head>
+<body>
+    <h1>Stock Data for {{ stock_name }}</h1>
+    <h2>Candlestick Chart</h2>
+    <img src="{{ url_for('static', filename='images/candlestick_chart.png') }}" alt="Candlestick Chart">
+    <h2>Bar Chart</h2>
+    <img src="{{ url_for('static', filename='images/bar_chart.png') }}" alt="Bar Chart">
+    <h2>Line Chart</h2>
+    <img src="{{ url_for('static', filename='images/line_chart.png') }}" alt="Line Chart">
+</body>
+</html>

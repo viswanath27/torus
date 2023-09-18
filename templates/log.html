@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <h2>Live Logs</h2>
+    <button onclick="killProcess()">Kill Process</button>
+    <pre id="log"></pre>
+    
+
+    <script>
+        function killProcess() {
+            fetch('/kill')
+              .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+              })
+              .catch(error => {
+                console.log('There was a problem with the fetch operation:', error.message);
+              });
+        }
+
+        if (!!window.EventSource) {
+            var source = new EventSource('/logstream');
+
+            source.onmessage = function(event) {
+                document.getElementById("log").textContent += event.data + "\n";
+            };
+
+            source.onerror = function(event) {
+                console.error("EventSource failed:", event);
+                source.close();
+            };
+        } else {
+            console.log("Your browser doesn't support SSE");
+        }
+    </script>
+</body>
+</html>
+
+    
+{% endblock %}

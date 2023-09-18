@@ -1,0 +1,29 @@
+Task:
+Create a Flask application which can take the name of the stock (Ex: Apple) use Yfinance library in python to read the stock data for the given organization from Sept 2023 to Aug 2022. Create the endpoints and its respective code to Draw the list of charts Candlestick chart, bar chart, line chart
+
+Config:
+ChatEnvConfig.clear_structure: True
+ChatEnvConfig.brainstorming: False
+
+
+Roster:
+Chief Executive Officer, Counselor, Chief Human Resource Officer, Chief Product Officer, Chief Technology Officer, Programmer, Code Reviewer, Software Test Engineer, Chief Creative Officer
+
+Modality:
+flask application
+
+Ideas:
+
+
+Language:
+ Python
+
+Code_Version:
+5.0
+
+Proposed_images:
+0
+
+Incorporated_images:
+0
+

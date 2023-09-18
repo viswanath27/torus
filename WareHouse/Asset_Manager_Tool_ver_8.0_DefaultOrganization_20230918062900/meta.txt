@@ -1,0 +1,29 @@
+Task:
+Create a Flask application with default nav bar options and statestreet logo with advance css styling along with templates and static folders created in the source code. This application should show the Apple stock data with its patterns explained with the help of Candlestick chart, bar chart, line chart and figure chart. Use Yfinance library in python to read the stock data for APPLE organization
+
+Config:
+ChatEnvConfig.clear_structure: True
+ChatEnvConfig.brainstorming: False
+
+
+Roster:
+Chief Executive Officer, Counselor, Chief Human Resource Officer, Chief Product Officer, Chief Technology Officer, Programmer, Code Reviewer, Software Test Engineer, Chief Creative Officer
+
+Modality:
+flask application
+
+Ideas:
+
+
+Language:
+ Python
+
+Code_Version:
+5.0
+
+Proposed_images:
+0
+
+Incorporated_images:
+1
+

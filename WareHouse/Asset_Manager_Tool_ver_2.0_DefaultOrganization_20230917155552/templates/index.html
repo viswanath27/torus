@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Application</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/statestreet_logo.png') }}" alt="StateStreet Logo">
+        </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/fund_performance">Fund Performance</a></li>
+            <!-- Add more nav bar options here -->
+        </ul>
+    </nav>
+    <div class="content">
+        <h1>Welcome to Flask Application</h1>
+        <!-- Add more content here -->
+    </div>
+</body>
+</html>
