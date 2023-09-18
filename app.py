@@ -1,6 +1,6 @@
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
-from flask import Flask, request, render_template, redirect, url_for, stream_with_context, Response, session
+from flask import Flask, request, render_template, redirect, url_for, stream_with_context, Response, session,send_from_directory
 # from chatdev_app import run_chat_chain_project
 # from celery import Celery
 import jsonify 
@@ -11,6 +11,8 @@ from collections import deque
 import time
 import queue
 import threading
+import os
+import zipfile
 # Use a deque as a buffer; this holds the last n lines
 BUFFER_SIZE = 1000  # or whatever you require
 buffer = deque(maxlen=BUFFER_SIZE)
@@ -82,23 +84,35 @@ def submit_form():
     user_input = request.form.get('user_input')
     global process, logs_queue
     if not process or process.poll() is not None:
-        cmd = ["ping", "localhost"]
-      #   "Create a Flask application which can take the name of the stock (Ex: Apple) use Yfinance library in python to read the stock data for the given organization from Sept 2023 to Aug 2022. Draw following charts Candlestick chart, bar chart, line chart and figure chart"
         process = subprocess.Popen(["python", "chatdev_app.py", "--task", user_input, "--name", project_name], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, universal_newlines=True)
         thread = threading.Thread(target=read_output, args=(process,))
         thread.start()
-#     subprocess_thread()
-#     process = subprocess.Popen(["python", "chatdev_app.py", "--task", user_input, "--name", project_name],
-#                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    return redirect(url_for('main'))
+    #return jsonify({"message": "Request submitted"}), 202
 
-#       # Streaming the output
-#     with open("output.txt", "wb") as file:
-#             for line in iter(process.stdout.readline, ''):
-#                   file.write(line)
-    # Redirect to the log page, which will initiate the streaming.
-    return redirect(url_for('view_logs'))
+@app.route('/download_zip', methods=['GET', 'POST'])
+def download_zip():
+#     folder_path = os.path.join(os.path.dirname(__file__), 'WareHouse',session['project_name']+"_DefaultOrganization"+"_")
+    folder_path = "/Users/bossacct/work/torus_application/torus/WareHouse/Asset_Manager_Tool_ver_55.0_DefaultOrganization_20230918225927"
 
+    # Ensure the folder exists
+    if not os.path.exists(folder_path) or not os.path.isdir(folder_path):
+        return "Folder not found", 404
 
+    # Create a zip filename based on folder name
+    zip_filename = os.path.basename(folder_path) + '.zip'
+    zip_path = os.path.join(os.path.dirname(folder_path), zip_filename)
+
+    # Zip the folder
+    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for foldername, subfolders, filenames in os.walk(folder_path):
+            for filename in filenames:
+                absolute_path = os.path.join(foldername, filename)
+                relative_path = absolute_path[len(folder_path) + 1:]  # +1 to exclude leading slash
+                zipf.write(absolute_path, relative_path)
+
+    # Serve the zipped file to the user
+    return send_from_directory(os.path.dirname(zip_path), zip_filename, as_attachment=True)
 
 @app.route('/kill')
 def kill_process():

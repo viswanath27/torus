@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="jumbotron text-center bg-primary text-white">
+<div class="jumbotron text-center bg-primary text-white small-jumbotron">
   <h1>StateStreet Tool Generation Suite</h1>
   <p>Automated tool generation suite for StateStreet</p>
 </div>
@@ -20,12 +20,12 @@
     </li>
   </ul>
   
-  <div class="tab-content">
+  <div class="tab-content tab-content-bordered">
     <!-- Task to Achieve -->
     <div class="tab-pane fade show active" id="step1" role="tabpanel">
       <div class="card mt-4">
         <div class="card-body">
-          <form action="{{ url_for('submit_form') }}" method="post">
+          <form action="{{ url_for('submit_form') }}" method="post" id="projectForm">
             <div class="form-group">
               <label for="project_name">Project Name:</label>
               <input type="text" class="form-control" id="project_name" name="project_name" placeholder="Enter project name" required>
@@ -36,7 +36,7 @@
               <textarea class="form-control" id="user_input" name="user_input" placeholder="Enter some text" rows="5" required></textarea>
             </div>
             
-            <button type="button" class="btn btn-primary" onclick="nextTab(2)">Next</button>
+            <button type="submit" class="btn btn-primary" onclick="nextTab(2)">Generate Project</button>
           </form>
         </div>
       </div>
@@ -47,9 +47,20 @@
       <div class="card mt-4">
         <div class="card-body">
           <h3 class="card-title">Message Log</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-          <button type="button" class="btn btn-primary" onclick="nextTab(3)">Next</button>
+          <div class="container">
+            <!-- <h2>Live Logs</h2> -->
+            <!-- Move the Kill Process button below the h2 and float it to the right -->
+            <button onclick="killProcess()" style="float: right; margin-bottom: 10px;">Kill Process</button>
+            
+            <!-- Clear the float -->
+            <div style="clear: both;"></div>
+    
+            <!-- Container for the log with a scrollbar -->
+            <div id="logContainer" style="max-height: 750px; overflow-y: auto; border: 1px solid gray;">
+                <pre id="log"></pre>
+            </div>
+        </div>
+          <!-- <button type="button" class="btn btn-primary" onclick="nextTab(3)">Next</button> -->
         </div>
       </div>
     </div>
@@ -59,9 +70,8 @@
       <div class="card mt-4">
         <div class="card-body">
           <h3 class="card-title">Tool Output</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-          <button type="submit" class="btn btn-success">Finish</button>
+          <p>You can download the project code from below ...</p>
+          <button type="button" class="btn btn-success"><a href="{{ url_for('download_zip') }}">Download</a></button>
         </div>
       </div>
     </div>
@@ -73,6 +83,64 @@
     $('.nav-tabs .nav-item a').removeClass('active').eq(tabNum-1).addClass('active');
     $('.tab-content .tab-pane').removeClass('show active').eq(tabNum-1).addClass('show active');
   }
+</script>
+<script>
+  function killProcess() {
+      fetch('/kill')
+        .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+        })
+        .catch(error => {
+          console.log('There was a problem with the fetch operation:', error.message);
+        });
+  }
+
+  if (!!window.EventSource) {
+      var source = new EventSource('/logstream');
+
+      source.onmessage = function(event) {
+          var logElement = document.getElementById("log");
+          var container = document.getElementById("logContainer");
+          
+          logElement.textContent += event.data + "\n";
+
+          // Scroll to the bottom
+          container.scrollTop = container.scrollHeight;
+      };
+
+      source.onerror = function(event) {
+          console.error("EventSource failed:", event);
+          source.close();
+      };
+  } else {
+      console.log("Your browser doesn't support SSE");
+  }
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('projectForm');
+
+    form.addEventListener('submit', function(event) {
+        // Check if the form is valid. If not, return and don't switch tabs.
+        if (!form.checkValidity()) {
+            return;
+        }
+        
+        // Prevent the default form submission for a moment.
+        event.preventDefault();
+        
+        // Move to the next tab.
+        nextTab(2);
+        
+        // Submit the form after a short delay, giving the tab switch animation some time.
+        setTimeout(function() {
+            form.submit();
+        }, 100);  // 100ms delay. Adjust as needed.
+    });
+});
+
 </script>
 
 {% endblock %}

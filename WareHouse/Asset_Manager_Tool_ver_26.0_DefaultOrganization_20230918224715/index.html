@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Application</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/fund_performance">Fund Performance</a></li>
+        </ul>
+    </nav>
+    <header>
+        <img src="{{ url_for('static', filename='images/statestreet_logo.png') }}" alt="StateStreet Logo">
+    </header>
+    <h1>Welcome to Flask Application</h1>
+</body>
+</html>

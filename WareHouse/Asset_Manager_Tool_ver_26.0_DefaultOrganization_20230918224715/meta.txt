@@ -1,0 +1,29 @@
+Task:
+Develop a professional flask application with default nav bar options and statestreet logo with advance css styling along with templates and static folders created in the source code. Create the fund performance report for BajajAlliance Mutual fund. Collect the required data from Internet portals.
+
+Config:
+ChatEnvConfig.clear_structure: True
+ChatEnvConfig.brainstorming: False
+
+
+Roster:
+Chief Executive Officer, Counselor, Chief Human Resource Officer, Chief Product Officer, Chief Technology Officer, Programmer, Code Reviewer, Software Test Engineer, Chief Creative Officer
+
+Modality:
+flask application
+
+Ideas:
+
+
+Language:
+ Python
+
+Code_Version:
+5.0
+
+Proposed_images:
+0
+
+Incorporated_images:
+1
+
