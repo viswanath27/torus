@@ -1,6 +1,6 @@
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 
 # Flask constructor takes the name of
 # current module (__name__) as argument.
@@ -33,6 +33,29 @@ def about():
 @app.route('/contact')
 def contact():
       return render_template("contact.html")
+
+
+# @app.route('/submit_form', methods=['POST'])
+# def submit_form():
+#     user_input = request.form.get('user_input')
+#     print(user_input)  # or process the input as needed
+#     return redirect(url_for('home'))  # or redirect to another route
+
+@app.route('/submit_form', methods=['POST'])
+def submit_form():
+    project_name = request.form.get('project_name')
+    user_input = request.form.get('user_input')
+    print("Project Name:", project_name)
+    print("Description:", user_input)
+    return redirect(url_for('home'))
+
+'''
+Give me the code for add fucntion in python
+'''
+@app.route('/add')
+def add():
+      return render_template("add.html")
+
 # main driver function
 if __name__ == '__main__':
 

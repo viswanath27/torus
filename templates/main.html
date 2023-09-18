@@ -5,7 +5,7 @@
 
     <div class="jumbotron text-center">
       <h1>StateStreet Tool Generation Suite</h1>
-      <p>Resize this responsive page to see the effect!</p> 
+      <p>Automated tool generation suite for StateStreet</p>
     </div>
       
     <div class="container">
@@ -18,7 +18,20 @@
             <br>
             <input type="submit" value="Submit">
           </form> -->
-        </form>
+          <!-- <form action="{{ url_for('submit_form') }}" method="post">
+            <textarea name="user_input" placeholder="Enter some text" required></textarea>
+            <button type="submit">Submit</button>
+        </form> -->
+        <form action="{{ url_for('submit_form') }}" method="post">
+          <label for="project_name">Project Name:</label>
+          <input type="text" id="project_name" name="project_name" placeholder="Enter project name" required>
+      
+          <label for="user_input">Description:</label>
+          <textarea id="user_input" name="user_input" placeholder="Enter some text" required></textarea>
+          
+          <button type="submit">Generate Project</button>
+      </form>
+
         </div>
         <div class="col-sm-4">
           <h3>Message log</h3>
