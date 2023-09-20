@@ -171,6 +171,10 @@ def read_output(proc):
 def view_logs():
     return render_template('log.html')
 
+@app.route('/home')
+def view_logs():
+    return render_template('home.html')
+
 @app.route('/logstream', methods=['GET'])
 def log_stream():
     def generate():
