@@ -212,6 +212,7 @@
 }
 
 body {
+	background: #EFF4F7 !important;
 	font-family: Arial, sans-serif;
 	margin: 0;
 	padding: 0;
@@ -219,7 +220,7 @@ body {
 
 /* Header Styles */
 .header {
-	background-image: url('../torus-spiral.gif'); /* Add your background image here */
+	background-image: url('../images/7gQY.gif'); /* Add your background image here */
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -287,7 +288,7 @@ body {
 }
 
 .step-icon {
-	background-color: #007bff;
+	background-color: #001aff;
 	color: #fff;
 	width: 40px;
 	height: 40px;
@@ -301,7 +302,7 @@ body {
 
 /* Custom Button Styles */
 .custom-button {
-	background-color: #ff5722;
+	background-color: #020b5b;
 	color: #fff;
 	font-size: 20px;
 	padding: 15px 30px;
@@ -312,7 +313,7 @@ body {
 }
 
 .custom-button:hover {
-	background-color: #f44336;
+	background-color: #020b5b;
 	transform: scale(1.05);
 }
 
@@ -365,7 +366,7 @@ cursor: pointer;
 position: fixed;
 bottom: 20px;
 right: 20px;
-background-color: #007bff;
+background-color: #001aff;
 color: #fff;
 width: 40px;
 height: 40px;
@@ -407,4 +408,15 @@ max-width: 90%;
 max-height: 90%;
 max-width: none; /* Remove the max-width constraint */
 max-height: none; /* Remove the max-height constraint */
+}
+
+/* Add extra space between step buttons */
+.step-buttons {
+    margin-top: 20px; /* Adjust the margin as needed */
+}
+
+/* Style for step buttons */
+.custom-button {
+    /* Your existing button styles */
+    margin-right: 10px; /* Adjust the right margin between buttons */
 }
