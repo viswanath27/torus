@@ -1,0 +1,29 @@
+Task:
+Using streamlit create an application which takes inputs of client name from a dropdown you will get list of the client after loading the data from '/home/charan/Downloads/dummy_portfolio_data.csv' using pd.read_csv and read as pandas dataframe. after user selects the client you should render a pie chart using plotly.graph_objects that pie chart should contain Company and their Quantity you will find this information in same dataframe. Download data for all the unique stock in the Company column using yfinance for past 6 months duration and save them to pandas dataframes. Now develop code to do risk analysis on all the stocks which are under the selected client. This assessment should include an evaluation of the historical volatility, correlation between assets, and any potential outliers or anomalies in the data which you have downloaded using yfinance for respective stocks.Your goal is to do comprehensive risk analysis that empowers the client to make informed decisions at last you should give a table data showing all the stocks which are at risk
+
+Config:
+ChatEnvConfig.clear_structure: True
+ChatEnvConfig.brainstorming: False
+
+
+Roster:
+Chief Executive Officer, Counselor, Chief Human Resource Officer, Chief Product Officer, Chief Technology Officer, Programmer, Code Reviewer, Software Test Engineer, Chief Creative Officer
+
+Modality:
+streamlit
+
+Ideas:
+
+
+Language:
+ Python
+
+Code_Version:
+5.0
+
+Proposed_images:
+0
+
+Incorporated_images:
+0
+

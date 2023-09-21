@@ -36,7 +36,7 @@
               <textarea class="form-control" id="user_input" name="user_input" placeholder="Enter some text" rows="5" required></textarea>
             </div>
             
-            <button type="submit" class="btn btn-primary" onclick="nextTab(2)">Generate Project</button>
+            <button type="submit" class="btn btn-primary" onclick="nextTab(2)" style="background-color:#020b5b;border-color:#020b5b">Generate Project</button>
           </form>
         </div>
       </div>
@@ -71,10 +71,26 @@
         <div class="card-body">
           <h3 class="card-title">Tool Output</h3>
           <p>You can download the project code from below ...</p>
-          <button type="button" class="btn btn-success"><a href="{{ url_for('download_zip') }}">Download</a></button>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>File Name</th>
+                <th>Download</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for file in files %}
+              <tr>
+                <td>{{ file }}</td>
+                <td><a href="{{ url_for('download_file', filename=file) }}" class="btn btn-success" style="background-color:#020b5b;border-color:#020b5b">Download</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+    
   </div>
 </div>
 

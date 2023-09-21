@@ -1,0 +1,29 @@
+Task:
+Create a streamlit application which can take the name of the stock (Ex: Apple) use download method from Yfinance library in python to read the historical stock data for the given organization from start date as AUG 2023 to end date as SEP 2023. On a button click Render all the charts (Candlestick chart, bar chart, line chart, ohcl chart, moving average chart, bollinger bands, Relative Strength Index (RSI) Chart, Ichimoku Cloud Chart, Histogram) using plotly.graph_objects method within streamlit application as 3x3 grid.Make sure you should definetly use cols option using st.columns instead of st.beta_columns to plot all the graphs in 3x3 grid and also please choose the layout to be wide using set_page_config and also please use use_container_width parameter while plotting
+
+Config:
+ChatEnvConfig.clear_structure: True
+ChatEnvConfig.brainstorming: False
+
+
+Roster:
+Chief Executive Officer, Counselor, Chief Human Resource Officer, Chief Product Officer, Chief Technology Officer, Programmer, Code Reviewer, Software Test Engineer, Chief Creative Officer
+
+Modality:
+streamlit application
+
+Ideas:
+
+
+Language:
+ Python
+
+Code_Version:
+5.0
+
+Proposed_images:
+0
+
+Incorporated_images:
+0
+

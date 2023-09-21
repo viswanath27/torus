@@ -33,7 +33,26 @@ logs_queue = queue.Queue()
 @app.route('/')
 # ‘/’ URL is bound with hello_world() function.
 def main():
-	return render_template("main.html")
+    from flask import Flask
+
+    app = Flask(__name__)
+
+    # Access the root folder path
+    root_folder_path = app.root_path
+
+    # Use the root folder path to build file paths
+    folder_path_warehouse = os.path.join(root_folder_path, 'WareHouse')
+
+    # Ensure the folder exists
+    if not os.path.exists(folder_path_warehouse) or not os.path.isdir(folder_path_warehouse):
+        return "Folder not found", 404
+
+    # Get a list of files in the folder
+    files = os.listdir(folder_path_warehouse)
+
+    # Render the HTML template with the list of files
+    return render_template('main.html', files=files)   
+	# return render_template("main.html")
 
 @app.route('/result', methods=['POST'])
 def result():
@@ -84,6 +103,22 @@ def submit_form():
     # Store form data in global or another mechanism (like database, cache, etc.) 
     # for the log stream to access.
 #     global project_name, user_input
+    from flask import Flask
+
+    app = Flask(__name__)
+
+    # Access the root folder path
+    root_folder_path = app.root_path
+
+    # Use the root folder path to build file paths
+    folder_path_warehouse = os.path.join(root_folder_path, 'WareHouse')
+
+    # Ensure the folder exists
+    if not os.path.exists(folder_path_warehouse) or not os.path.isdir(folder_path_warehouse):
+        return "Folder not found", 404
+
+    # Get a list of files in the folder
+    files = os.listdir(folder_path_warehouse)
     session['project_name'] = request.form.get('project_name')
     session['user_input'] = request.form.get('user_input')
     project_name = request.form.get('project_name')
@@ -94,6 +129,7 @@ def submit_form():
         process = subprocess.Popen(["python", "chatdev_app.py", "--task", user_input, "--name", project_name], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, universal_newlines=True)
         thread = threading.Thread(target=read_output, args=(process,))
         thread.start()
+    session['files'] = files 
     return redirect(url_for('main'))
     #return jsonify({"message": "Request submitted"}), 202
 
@@ -107,6 +143,40 @@ def download_zip():
         return "Folder not found", 404
 
     # Create a zip filename based on folder name
+    zip_filename = os.path.basename(folder_path) + '.zip'
+    zip_path = os.path.join(os.path.dirname(folder_path), zip_filename)
+
+    # Zip the folder
+    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for foldername, subfolders, filenames in os.walk(folder_path):
+            for filename in filenames:
+                absolute_path = os.path.join(foldername, filename)
+                relative_path = absolute_path[len(folder_path) + 1:]  # +1 to exclude leading slash
+                zipf.write(absolute_path, relative_path)
+
+    # Serve the zipped file to the user
+    return send_from_directory(os.path.dirname(zip_path), zip_filename, as_attachment=True)
+
+    
+@app.route('/download/<filename>', methods=['GET'])
+def download_file(filename):
+    from flask import Flask
+
+    app = Flask(__name__)
+
+    # Access the root folder path
+    root_folder_path = app.root_path
+
+    # Use the root folder path to build file paths
+    folder_path_warehouse = os.path.join(root_folder_path, 'WareHouse')
+    # folder_path = "/Users/bossacct/work/torus_application/torus/WareHouse/Asset_Manager_Tool_ver_55.0_DefaultOrganization_20230918225927"
+    folder_path = os.path.join(folder_path_warehouse,filename)
+    print(folder_path)
+    # Ensure the folder exists
+    if not os.path.exists(folder_path) or not os.path.isdir(folder_path):
+        return "Folder not found", 404
+
+     # Create a zip filename based on folder name
     zip_filename = os.path.basename(folder_path) + '.zip'
     zip_path = os.path.join(os.path.dirname(folder_path), zip_filename)
 
