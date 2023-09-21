@@ -51,6 +51,12 @@ def result():
 @app.route('/about')
 def about():
       return render_template("about.html")
+
+@app.route('/fund_administration')
+def fund_administration():
+      return render_template("fund_administration.html")
+
+
 @app.route('/contact')
 def contact():
       return render_template("contact.html")
