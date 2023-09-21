@@ -172,7 +172,7 @@ def view_logs():
     return render_template('log.html')
 
 @app.route('/home')
-def view_logs():
+def home():
     return render_template('home.html')
 
 @app.route('/logstream', methods=['GET'])
