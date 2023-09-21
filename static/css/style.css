@@ -98,8 +98,12 @@
 
 /* custom style */
 .container {
-  margin: 30px;
-}
+	 /* Set the background color to light blue */
+	padding: 20px; /* Add padding to create some space inside the container */
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+	border-radius: 5px; /* Optional: Add rounded corners to the container */
+  }
+  
 
 .shadow {
 	width: 100%;

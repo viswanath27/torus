@@ -89,6 +89,7 @@ def submit_form():
     project_name = request.form.get('project_name')
     user_input = request.form.get('user_input')
     global process, logs_queue
+    print(project_name, user_input)
     if not process or process.poll() is not None:
         process = subprocess.Popen(["python", "chatdev_app.py", "--task", user_input, "--name", project_name], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, universal_newlines=True)
         thread = threading.Thread(target=read_output, args=(process,))
@@ -170,6 +171,7 @@ def kill_process():
 
 def read_output(proc):
     for line in iter(proc.stdout.readline, ''):
+        print(line)
         logs_queue.put(line)
         time.sleep(0.05)
 
