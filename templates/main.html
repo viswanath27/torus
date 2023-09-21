@@ -22,7 +22,7 @@
   
   <div class="tab-content tab-content-bordered">
     <!-- Task to Achieve -->
-    <div class="tab-pane fade show active" id="step1" role="tabpanel">
+    <div class="tab-pane fade active" id="step1" role="tabpanel">
       <div class="card mt-4">
         <div class="card-body">
           <form action="{{ url_for('submit_form') }}" method="post" id="projectForm">
@@ -47,7 +47,7 @@
       <div class="card mt-4">
         <div class="card-body">
           <h3 class="card-title">Message Log</h3>
-          <div class="container">
+          
             <!-- <h2>Live Logs</h2> -->
             <!-- Move the Kill Process button below the h2 and float it to the right -->
             <button onclick="killProcess()" style="float: right; margin-bottom: 10px;">Kill Process</button>
@@ -58,7 +58,7 @@
             <!-- Container for the log with a scrollbar -->
             <div id="logContainer" style="max-height: 750px; overflow-y: auto; border: 1px solid gray;">
                 <pre id="log"></pre>
-            </div>
+            
         </div>
           <!-- <button type="button" class="btn btn-primary" onclick="nextTab(3)">Next</button> -->
         </div>

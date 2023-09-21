@@ -1,9 +1,8 @@
 {% extends 'layout.html' %}
 
 {% block head_content %}
-<link rel='stylesheet' href='https://tympanus.net/Development/Slicebox/css/demo.css'>
-<!-- <link rel="stylesheet" href="style.css"> -->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<!-- <link rel='stylesheet' href='https://tympanus.net/Development/Slicebox/css/demo.css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
 {% endblock head_content%}
 
 {% block content %}
@@ -17,15 +16,15 @@
             <button class="custom-button" id="step3">Download Project</button>
             <button class="custom-button" id="getStarted">Let's Get Started</button>
             <div class="slider-button" id="sliderButton">
-    <span class="slider-icon">&#9654;</span>
-	<div id="pdf-icon" class="slider-button" style="right: 80px;">
-    <span class="slider-icon">PDF</span>
-</div>
+              <span class="slider-icon">&#9654;</span>
+              <div id="pdf-icon" class="slider-button" style="right: 80px;">
+                <span class="slider-icon">PDF</span>
+              </div>
 	<!-- PDF Viewer Section -->
-<div id="pdf-viewer" class="pdf-viewer">
-    <span id="closePdfViewer" class="close-icon">×</span>
-    <iframe src="{{ url_for('static', filename='data/sample.pdf') }}" frameborder="0" style="width: 80%; height: 80%; max-width: none; max-height: none;"></iframe>
-</div>
+  <div id="pdf-viewer" class="pdf-viewer">
+      <span id="closePdfViewer" class="close-icon">×</span>
+      <iframe src="{{ url_for('static', filename='data/sample.pdf') }}" frameborder="0" style="width: 80%; height: 80%; max-width: none; max-height: none;"></iframe>
+  </div>
 
 </div>
         </div>
