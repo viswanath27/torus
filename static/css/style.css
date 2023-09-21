@@ -220,7 +220,7 @@ body {
 
 /* Header Styles */
 .header {
-	background-image: url('../images/7gQY.gif'); /* Add your background image here */
+	background-image: url('../images/8jzE.gif'); /* Add your background image here */
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -419,4 +419,10 @@ max-height: none; /* Remove the max-height constraint */
 .custom-button {
     /* Your existing button styles */
     margin-right: 10px; /* Adjust the right margin between buttons */
+}
+
+.slider-view .slider-content .wrapper {
+
+    max-width: unset !important;
+
 }
