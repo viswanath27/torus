@@ -1,1 +1,0 @@
-pip install flask yfinance plotly

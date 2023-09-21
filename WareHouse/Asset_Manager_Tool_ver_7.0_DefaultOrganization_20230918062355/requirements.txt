@@ -1,3 +1,0 @@
-Flask==1.1.2
-yfinance==0.1.63
-chart.js==3.5.1

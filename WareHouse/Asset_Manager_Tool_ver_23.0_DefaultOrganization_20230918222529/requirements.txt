@@ -1,4 +1,0 @@
-tkinter
-requests
-matplotlib
-beautifulsoup4

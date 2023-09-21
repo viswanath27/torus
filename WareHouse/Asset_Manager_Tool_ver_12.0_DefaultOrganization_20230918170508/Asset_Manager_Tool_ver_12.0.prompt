@@ -1,1 +1,0 @@
-Create a Flask application which can take the name of the stock (Ex: Apple) use Yfinance library in python to read the stock data for the given organization from Sept 2023 to Aug 2022. Draw following charts Candlestick chart, bar chart, line chart and figure chart
