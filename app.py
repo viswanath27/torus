@@ -44,9 +44,9 @@ def result():
     except ValueError:
         return "Invalid input. Please enter a number."
 
-@app.route('/home')
-def home():
-      return render_template("home.html")
+# @app.route('/home')
+# def home():
+#       return render_template("home.html")
 
 @app.route('/about')
 def about():
