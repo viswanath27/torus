@@ -1,54 +1,34 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="header">
-        
-</div>
-<div class="jumbotron text-center bg-primary text-white small-jumbotron">
-  <h1>StateStreet Tool Generation Suite</h1>
-  <p>Automated tool generation suite for StateStreet</p>
+<div style="width:100%;height:320px;background-image: url({{ url_for('static', filename='images/banner_bg_blue.png') }});background-size: cover;">
+  <div style="width:100%;height:320px;background-image: url({{ url_for('static', filename='images/main.svg') }});background-size: contain;background-position: bottom left;background-repeat: no-repeat;"></div>
 </div>
 
-<div class="container mt-5">
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="step1-tab" data-toggle="tab" href="#step1" role="tab">Step 1: Task to Achieve</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="step2-tab" data-toggle="tab" href="#step2" role="tab">Step 2: Project Generation</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step3" role="tab">Step 3: Project output</a>
-    </li>
-  </ul>
-  
-  <div class="tab-content tab-content-bordered">
-    <!-- Task to Achieve -->
-    <div class="tab-pane fade active" id="step1" role="tabpanel">
-      <div class="card mt-4">
-        <div class="card-body">
-          <form action="{{ url_for('submit_form') }}" method="post" id="projectForm">
-            <div class="form-group">
-              <label for="project_name">Project Name:</label>
-              <input type="text" class="form-control" id="project_name" name="project_name" placeholder="Enter project name" required>
-            </div>
+<div class="body_content">
 
-            <div class="form-group">
-              <label for="user_input">Description:</label>
-              <textarea class="form-control" id="user_input" name="user_input" placeholder="Enter some text" rows="5" required></textarea>
-            </div>
-            
-            <button type="submit" class="btn btn-primary" onclick="nextTab(2)" style="background-color:#020b5b;border-color:#020b5b">Generate Project</button>
-          </form>
+  <sl-card class="card-basic" style="width: 100%;">
+    <sl-tab-group  placement="start">
+      <sl-tab slot="nav" panel="step1" class="step1"><sl-icon-button name="1-square"></sl-icon-button>  Task to Achive</sl-tab>
+      <sl-tab slot="nav" panel="step2" class="step2"><sl-icon-button name="2-square"></sl-icon-button>  Project Generation</sl-tab>
+      <sl-tab slot="nav" panel="step3" class="step3"><sl-icon-button name="3-square"></sl-icon-button>  Project Output</sl-tab>
+    
+      <sl-tab-panel name="step1">
+        <form action="{{ url_for('submit_form') }}" method="post" id="projectForm">
+        <div class="form-group">
+          <label for="project_name">Project Name:</label>
+          <input type="text" class="form-control" id="project_name" name="project_name" placeholder="Enter project name" required>
         </div>
-      </div>
-    </div>
 
-    <!-- Project Generation -->
-    <div class="tab-pane fade" id="step2" role="tabpanel">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h3 class="card-title">Message Log</h3>
+        <div class="form-group">
+          <label for="user_input">Description:</label>
+          <textarea class="form-control" id="user_input" name="user_input" placeholder="Enter some text" rows="5" required></textarea>
+        </div>
+        
+        <sl-button type="submit" variant="primary" onclick="nextTab(2)" style="--sl-color-primary-600:#0032F5;">Generate Project</sl-button>
+      </sl-tab-panel>
+      <sl-tab-panel name="step2">
+        <h3 class="card-title">Message Log</h3>
           
             <!-- <h2>Live Logs</h2> -->
             <!-- Move the Kill Process button below the h2 and float it to the right -->
@@ -60,18 +40,9 @@
             <!-- Container for the log with a scrollbar -->
             <div id="logContainer" style="max-height: 750px; overflow-y: auto; border: 1px solid gray;">
                 <pre id="log"></pre>
-            
-        </div>
-          <!-- <button type="button" class="btn btn-primary" onclick="nextTab(3)">Next</button> -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Tool Output -->
-    <div class="tab-pane fade" id="step3" role="tabpanel">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h3 class="card-title">Tool Output</h3>
+      </sl-tab-panel>
+      <sl-tab-panel name="step3">
+        <h3 class="card-title">Tool Output</h3>
           <p>You can download the project code from below ...</p>
           <table class="table">
             <thead>
@@ -84,25 +55,22 @@
               {% for file in files %}
               <tr>
                 <td>{{ file }}</td>
-                <td><a href="{{ url_for('download_file', filename=file) }}" class="btn btn-success" style="background-color:#020b5b;border-color:#020b5b">Download</a></td>
+                <td><a href="{{ url_for('download_file', filename=file) }}" class="btn btn-success" style="background-color:#0032F5;border-color:#0032F5">Download</a></td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
-    
-  </div>
+      </sl-tab-panel>
+    </sl-tab-group>
+  </sl-card>
 </div>
 
+
+
 <script>
-  function nextTab(tabNum) {
-    $('.nav-tabs .nav-item a').removeClass('active').eq(tabNum-1).addClass('active');
-    $('.tab-content .tab-pane').removeClass('show active').eq(tabNum-1).addClass('show active');
+   function nextTab(tabNum) {
+    document.querySelector('sl-tab-group').show('step'+tabNum)
   }
-</script>
-<script>
   function killProcess() {
       fetch('/kill')
         .then(response => {

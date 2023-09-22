@@ -15,11 +15,15 @@
             <button class="custom-button" id="step2">Generate Project</button>
             <button class="custom-button" id="step3">Download Project</button>
             <button class="custom-button" id="getStarted"><a href="{{ url_for('main') }}" style="text-decoration: none; color: inherit;">Let's Get Started</a></button>
-            <div class="slider-button" id="sliderButton">
-              <span class="slider-icon">&#9654;</span>
-              <div id="pdf-icon" class="slider-button" style="right: 80px;">
-                <span class="slider-icon">PDF</span>
-              </div>
+           
+            <sl-button variant="primary" size="small" style="--sl-color-primary-600:#0032F5;" pill id="sliderButton">
+              <sl-icon slot="prefix" name="file-earmark-easel"></sl-icon>
+              Slides
+            </sl-button>
+            <sl-button variant="primary" size="small" style="--sl-color-primary-600:#0032F5;" pill id="pdf-icon">
+              <sl-icon slot="prefix" name="filetype-pdf"></sl-icon>
+              PDF
+            </sl-button>
 	<!-- PDF Viewer Section -->
   <div id="pdf-viewer" class="pdf-viewer">
       <span id="closePdfViewer" class="close-icon">×</span>

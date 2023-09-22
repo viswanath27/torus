@@ -1,3 +1,166 @@
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* General Demo Style */
+body {
+	background: #e4ebe9 url(../images/fancy_deboss.png) repeat top left;
+	color: #444;
+	font-family: "PT Sans Narrow", Arial, sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-width: 320px;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+h1, h2, h5 {
+	margin: 20px 20px 30px 20px;
+	font-size: 56px;
+	color: #fff;
+	text-align: center;
+	font-weight: 700;
+	text-shadow: 1px 1px 3px #e0d1bc;
+}
+
+h1 span, h5 {
+	font-size: 18px;
+	display: block;
+	font-style: italic;
+	color: #997f5a;
+	font-weight: 400;
+	text-shadow: 0px 1px 1px #fff;
+}
+
+.wrapper {
+	position: relative;
+	max-width: 840px;
+	width: 100%;
+	padding: 0 50px;
+	margin: 0 auto;
+}
+
+/* Header Style */
+.codrops-top {
+	line-height: 24px;
+	font-size: 11px;
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	text-transform: uppercase;
+	z-index: 9999;
+	position: relative;
+	font-family: Cambria, Georgia, serif;
+	box-shadow: 1px 0px 2px rgba(0,0,0,0.2);
+}
+
+.codrops-top a {
+	padding: 0px 10px;
+	letter-spacing: 1px;
+	color: #333;
+	display: inline-block;
+}
+
+.codrops-top a:hover {
+	background: rgba(255,255,255,0.6);
+}
+
+.codrops-top span.right {
+	float: right;
+}
+
+.codrops-top span.right a {
+	float: left;
+	display: block;
+}
+
+/* More examples buttons */
+
+.more {
+	position: relative;
+	clear: both;
+	padding: 20px;
+}
+
+.more:before {
+	content: "";
+	position: absolute;
+	background-color: #ddd1b6;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.8);
+	height: 1px;
+	width: 440px;
+	left: 50%;
+	margin-left: -220px;
+	top: -10px;
+}
+
+.more ul {
+	display: block;
+	height: 32px;
+	text-align: center;
+}
+
+.more ul li {
+	display: inline-block;
+	line-height: 24px;
+}
+
+.more ul li.selected a,
+.more ul li.selected a:hover {
+	background: #ae997a;
+	color: #fff;
+	text-shadow: none;
+}
+
+.more ul li a {
+	text-shadow: 1px 1px 1px #fff;
+	color: #555;
+	background: #fbf9f5;
+	padding: 2px 5px;
+	margin: 0 2px;
+	line-height: 18px;
+	display: inline-block;
+	box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.more ul li a:hover {
+	background: #8c795d;
+	color: #fff;
+	text-shadow: none;
+}
+
+p.info {
+	font-family: Poppins, serif;
+	font-style: italic;
+	color: #997f5a;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+	padding: 20px;
+	display: block;
+	clear: both;
+	text-align: center;
+	width: 100%;
+	max-wdith: 440px;
+	margin: 0 auto;
+}
+
+
 /* Slicebox Style */
 .sb-slider {
 	margin: 10px auto;
@@ -217,7 +380,7 @@
 
 body {
 	background: #EFF4F7 !important;
-	font-family: Arial, sans-serif;
+	font-family: Poppins, sans-serif;
 	margin: 0;
 	padding: 0;
 }
@@ -292,6 +455,7 @@ body {
 }
 
 .step-icon {
+	display: none !important;
 	background-color: #001aff;
 	color: #fff;
 	width: 40px;
@@ -306,7 +470,7 @@ body {
 
 /* Custom Button Styles */
 .custom-button {
-	background-color: #020b5b;
+	background-color: #0032F5;
 	color: #fff;
 	font-size: 20px;
 	padding: 15px 30px;
@@ -317,7 +481,7 @@ body {
 }
 
 .custom-button:hover {
-	background-color: #020b5b;
+	background-color: #0032F5;
 	transform: scale(1.05);
 }
 
@@ -429,4 +593,145 @@ max-height: none; /* Remove the max-height constraint */
 
     max-width: unset !important;
 
+}
+
+/* 
+body {
+	padding-top: 50px;
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+	background-color: #0032F5;
+	padding: 10px 0;
+}
+
+nav ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	text-align: right;  /* This will make the list items align to the right */
+}
+
+nav li {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+nav a {
+	text-decoration: none;
+	padding: 5px 15px;
+	color: white; /* Text color */
+	transition: background-color 0.3s;
+}
+
+nav a:hover {
+	background-color: #ffffff33; /* Slight white overlay on hover */
+}
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 20px;
+} */
+
+.nav-logo img {
+	max-height: 40px; /* Adjust based on your logo size */
+	margin-right: 10px;
+}
+form {
+	margin: 20px 0;
+}
+
+input[type="text"] {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+button {
+	padding: 10px 15px;
+	border: none;
+	background-color: #0032F5;
+	color: white;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #555;
+}
+/* input[type="text"] {
+width: 300px;
+height: 400px; 
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 4px;
+vertical-align: top;  Ensure the cursor starts from the top
+} */
+/* textarea {
+width: 300px;
+height: 400px; 
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 4px;
+padding: 10px;  
+resize: vertical;  
+} */
+.tab-content .tab-pane:not(.active) {
+margin: 0 !important;
+display: none;
+}
+
+.tab-content-bordered {
+  border: 1px solid #dee2e6;
+  border-top: none;
+  border-radius: 0 0 0.25rem 0.25rem;
+  padding: 15px;
+}
+label {
+display: block;
+margin: 10px 0 5px 0;
+}
+
+/* input[type="text"], */
+textarea {
+width: 300px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 4px;
+padding: 10px;
+margin-bottom: 10px;  /* Added spacing between form elements */
+}
+
+textarea {
+height: 400px;
+resize: vertical;
+}
+.small-jumbotron {
+	padding: 20px 20px; /* Reducing padding to make it smaller */
+	font-size: 0.8rem; /* Reducing font size for the text within the jumbotron */
+}
+
+.small-jumbotron h1 {
+	font-size: 2.5rem; /* Reducing font size for the h1 tag */
+}
+
+.small-jumbotron p {
+	font-size: 1.7rem; /* Reducing font size for the p tag */
+}
+.jumbotron{
+	background-color: #E8F5FE;
+}
+
+/*a10k*/
+.body_content{
+	padding: 12px;
+	max-width: 1600px;
+	margin-left:auto;
+	margin-right: auto;
 }
